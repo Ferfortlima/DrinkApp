@@ -6,25 +6,35 @@
  * @flow
  */
 
-import {  AppRegistry } from 'react-native';
+import {  AppRegistry, Platform } from 'react-native';
 import {  StackNavigator } from "react-navigation";
-import Home from './src/pages/home/Home';
+import Categories from './src/pages/categories/Categories';
+import Constants from './src/constants/Constants';
+import Drinks from './src/pages/drinks/Drinks';
 
 
-const HomeStack = StackNavigator({
+const PagesStack = StackNavigator({
 
-  Home: {
-    screen: Home,
+  Categories: {
+    screen: Categories,
     navigationOptions: ({ navigation }) => ({
-      title: "iDrink",
-      headerTintColor: "red",
-      headerStyle: { backgroundColor: "blue" },
+      title: "",
+      headerTintColor: "black",
+      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary  },
     })
   },
 
+  Drinks: {
+    screen: Drinks,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.strCategory}`,
+      headerTintColor: "black",
+      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary  },
+    })
+  },
 
 });
-const Root = HomeStack;
+const Root = PagesStack;
 
 export default Root;
-AppRegistry.registerComponent('Home', () => Home);
+AppRegistry.registerComponent('Categories', () => Categories);
