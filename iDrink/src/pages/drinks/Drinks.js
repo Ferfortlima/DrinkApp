@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {  StatusBar, TouchableNativeFeedback, TouchableOpacity, Platform, ActivityIndicator, View, FlatList } from 'react-native';
+import { Text, StatusBar, TouchableNativeFeedback, TouchableOpacity, ImageBackground, Platform, ActivityIndicator, View, FlatList } from 'react-native';
 import styles from './Drinks.style';
-import { Card } from 'react-native-elements'
 import DrinkDetails from 'iDrink/src/components/drinkDetails/DrinkDetails';
-
+import ModalLoading from 'iDrink/src/components/modalLoading/ModalLoading';
 
 export default class Drinks extends Component {
 
@@ -12,6 +11,8 @@ export default class Drinks extends Component {
         this.state = {
             isLoading: true,
             modalDrinkDetails: false,
+            isLoadingModal: false,
+            details: ''
         }
     }
 
@@ -20,14 +21,44 @@ export default class Drinks extends Component {
     }
 
     setModalDrinkDetails = (visible) => {
-       
-            this.setState({ modalDrinkDetails:visible });
-        
-        
+
+        this.setState({ modalDrinkDetails: visible });
+
+
     }
 
+    getDrinkDetail(id) {
+        this.setState({
+            isLoadingModal: true,
+        }, function () {
+            setTimeout(() => {
+
+                return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+                    .then((response) => response.json())
+                    .then((responseJson) => {
+                        this.setState({
+                            isLoadingModal: false,
+                            details: responseJson
+                        }, function () {
+                            this.setModalDrinkDetails(true);
+
+                        });
+
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }, 3000);
+        });
+
+    }
+
+
+
+
     onPressDrinks = (drink) => {
-        this.setModalDrinkDetails(true);
+        this.getDrinkDetail(drink.idDrink);
+
     }
 
     searchCategories = () => {
@@ -61,40 +92,50 @@ export default class Drinks extends Component {
             )
         }
 
+        RenderDrinks = item => {
+            return (<ImageBackground source={{ uri: item.drink.strDrinkThumb }} style={styles.backgroundImage}>
+                <View style={styles.containerInsideImage}>
+                    <View style={styles.containerTextDrinks}>
+                        <Text adjustsFontSizeToFit style={styles.drinkNameText}>{item.drink.strDrink}</Text>
+                    </View>
+                </View>
+
+            </ImageBackground>);
+        }
 
         return (
             <View style={styles.container}>
                 <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
+                <ModalLoading
+                    loading={this.state.isLoadingModal} />
                 <DrinkDetails
+                    detailsDrink={this.state.details}
                     isModalVisible={this.state.modalDrinkDetails}
                     isModalLoading={this.state.modalLoading}
                     setModalVisible={this.setModalDrinkDetails}
                 />
                 {Platform.OS === 'ios' ? (<FlatList
                     data={this.state.dataSource}
+                    numColumns={3}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => this.onPressDrinks(item)}>
-                            <Card
-                                image={{ uri: item.strDrinkThumb }}
-                                title={item.strDrink}
-                            >
-                            </Card>
+                        <TouchableOpacity
+                            onPress={() => this.onPressDrinks(item)}>
+                            <RenderDrinks drink={item} />
+
                         </TouchableOpacity>
+
                     }
                 />
                 ) :
                     (
                         <FlatList
                             data={this.state.dataSource}
+                            numColumns={3}
                             renderItem={({ item }) =>
                                 <TouchableNativeFeedback
                                     onPress={() => this.onPressDrinks(item)}
                                     background={TouchableNativeFeedback.SelectableBackground()}>
-                                    <Card
-                                        image={{ uri: item.strDrinkThumb }}
-                                        title={item.strDrink}
-                                    >
-                                    </Card>
+                                    <RenderDrinks drink={item} />
                                 </TouchableNativeFeedback>
                             }
                         />

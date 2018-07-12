@@ -6,16 +6,14 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 5,
         backgroundColor: "rgba(0,0,0,0.8)",
     },
     containerContent:{
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: 5,
-        marginVertical:"15%",
-        width:"80%",
+        marginVertical:Dimensions.get('window').height - Dimensions.get('window').height * 0.95,
+        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.15,
         backgroundColor:"#e2e2e2",
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
@@ -36,8 +34,37 @@ export default StyleSheet.create({
         color: "white"
 
     },
-    containerTitle:{flex:1},
-    containerButtonModal:{flex:1,justifyContent:"center"}
+    containerThumb:{
+        flex:0.5,
+    },
+    containerTextViews:{
+        flex:0.44,
+        backgroundColor:"red"
+    },
+    containerIngredients:{
+      
+    },
+    containerTitle:{
+        
+    },
+    containerGlass:{
+       
+    },
+    containerCategorie:{
+        
+    },
+    containerAlcoholic:{
+       
+    },
+    
+    containerButtonModal:{
+        flex:0.3,
+        justifyContent:"center",
+    },
+    imageThumb:{ 
+        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.15, 
+        height: Dimensions.get('window').height - Dimensions.get('window').height * 0.5,
+     }
 
 
 });
