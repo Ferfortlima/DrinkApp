@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
-import { Text, StatusBar, TouchableNativeFeedback, TouchableOpacity, Platform, ActivityIndicator, View, FlatList, Image } from 'react-native';
+import {  StatusBar, TouchableNativeFeedback, TouchableOpacity, Platform, ActivityIndicator, View, FlatList } from 'react-native';
 import styles from './Drinks.style';
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card } from 'react-native-elements'
+import DrinkDetails from 'iDrink/src/components/drinkDetails/DrinkDetails';
 
 
 export default class Drinks extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { isLoading: true }
+        this.state = {
+            isLoading: true,
+            modalDrinkDetails: false,
+        }
     }
 
     componentDidMount() {
         this.searchCategories();
     }
 
+    setModalDrinkDetails = (visible) => {
+       
+            this.setState({ modalDrinkDetails:visible });
+        
+        
+    }
+
+    onPressDrinks = (drink) => {
+        this.setModalDrinkDetails(true);
+    }
 
     searchCategories = () => {
         return fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=' + this.props.navigation.state.params.strCategory.replace(" ", "_"))
@@ -35,9 +49,7 @@ export default class Drinks extends Component {
     }
 
 
-    onPressDrinks = (drink) => {
-        console.log(drink);
-    }
+
 
     render() {
 
@@ -53,7 +65,11 @@ export default class Drinks extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
-                {console.log('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=' + this.props.navigation.state.params.strCategory.replace(" ", "_"))}
+                <DrinkDetails
+                    isModalVisible={this.state.modalDrinkDetails}
+                    isModalLoading={this.state.modalLoading}
+                    setModalVisible={this.setModalDrinkDetails}
+                />
                 {Platform.OS === 'ios' ? (<FlatList
                     data={this.state.dataSource}
                     renderItem={({ item }) =>
@@ -61,8 +77,6 @@ export default class Drinks extends Component {
                             <Card
                                 image={{ uri: item.strDrinkThumb }}
                                 title={item.strDrink}
-                                featuredTitle={item.strDrink}
-                                featuredTitleStyle={{ color: "white", backgroundColor: "rgba(0,0,0,0.6)" }}
                             >
                             </Card>
                         </TouchableOpacity>
@@ -79,8 +93,6 @@ export default class Drinks extends Component {
                                     <Card
                                         image={{ uri: item.strDrinkThumb }}
                                         title={item.strDrink}
-                                        featuredTitle={item.strDrink}
-                                        featuredTitleStyle={{ color: "white", backgroundColor: "rgba(0,0,0,0.6)" }}
                                     >
                                     </Card>
                                 </TouchableNativeFeedback>
