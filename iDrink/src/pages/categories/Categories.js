@@ -36,8 +36,6 @@ export default class Categories extends Component {
 
 
     onPressCategories = (categorie) => {
-        console.log(categorie);
-
         this.props.navigation.navigate("Drinks", {...categorie})
     }
 
