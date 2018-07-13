@@ -25,7 +25,7 @@ export default StyleSheet.create({
     containerTextTitle: {
         flex: 0.15,
         justifyContent: "center",
-        
+
     },
     imageTitle: {
         width: "100%",

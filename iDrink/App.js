@@ -6,8 +6,8 @@
  * @flow
  */
 
-import {  AppRegistry, Platform } from 'react-native';
-import {  StackNavigator } from "react-navigation";
+import { AppRegistry, Platform } from 'react-native';
+import { StackNavigator } from "react-navigation";
 import Categories from './src/pages/categories/Categories';
 import Constants from './src/constants/Constants';
 import Drinks from './src/pages/drinks/Drinks';
@@ -19,8 +19,8 @@ const PagesStack = StackNavigator({
     screen: Categories,
     navigationOptions: ({ navigation }) => ({
       title: "",
-      headerTintColor: "black",
-      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary  },
+      headerTintColor: (Platform.OS === 'ios' ? Constants.colors.colorPrimary : "white"),
+      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary },
     })
   },
 
@@ -28,8 +28,8 @@ const PagesStack = StackNavigator({
     screen: Drinks,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.strCategory}`,
-      headerTintColor: "black",
-      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary  },
+      headerTintColor: (Platform.OS === 'ios' ? Constants.colors.colorPrimary : "white"),
+      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary },
     })
   },
 

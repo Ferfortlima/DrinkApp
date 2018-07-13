@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     containerButtonModal: {
         justifyContent: "center",
-        marginBottom: "0.5%"
+        marginBottom: "1%"
     },
     containerButton: {
         margin: 3,
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     },
     containerTextViews: {
         backgroundColor: "#F5F5F7",
-        height: Dimensions.get('window').height - Dimensions.get('window').height * 0.71,
+        height: Dimensions.get('window').height - Dimensions.get('window').height * 0.75,
         width: "80%",
         padding: 5,
     },

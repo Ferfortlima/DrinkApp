@@ -114,7 +114,7 @@ export default class Drinks extends Component {
                     isModalLoading={this.state.modalLoading}
                     setModalVisible={this.setModalDrinkDetails}
                 />
-                {Platform.OS === 'ios' ? (<FlatList
+                <FlatList
                     data={this.state.dataSource}
                     numColumns={3}
                     renderItem={({ item }) =>
@@ -126,23 +126,6 @@ export default class Drinks extends Component {
 
                     }
                 />
-                ) :
-                    (
-                        <FlatList
-                            data={this.state.dataSource}
-                            numColumns={3}
-                            renderItem={({ item }) =>
-                                <TouchableNativeFeedback
-                                    onPress={() => this.onPressDrinks(item)}
-                                    background={TouchableNativeFeedback.SelectableBackground()}>
-                                    <RenderDrinks drink={item} />
-                                </TouchableNativeFeedback>
-                            }
-                        />
-                    )}
-
-
-
 
             </View>
         );
