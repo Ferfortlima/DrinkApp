@@ -9,7 +9,7 @@ const PagesStack = StackNavigator({
 
   Categories: {
     screen: Categories,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation }) => ({  
       title: "iDrink",
       headerBackTitle: 'Back',
       headerTintColor: (Platform.OS === 'ios' ? Constants.colors.colorPrimary : "white"),
