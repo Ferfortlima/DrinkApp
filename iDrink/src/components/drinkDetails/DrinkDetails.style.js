@@ -49,13 +49,16 @@ export default StyleSheet.create({
     },
     titleText: {
         fontSize: Dimensions.get('window').height - Dimensions.get('window').height * 0.97,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color:Constants.colors.colorPrimary
     },
     containerInstructions: {
         margin: 2
     },
     textInstructions: {
         fontSize: Dimensions.get('window').height - Dimensions.get('window').height * 0.98,
+        color:Constants.colors.colorPrimary,
+        fontWeight:"500"
     },
     imageThumb: {
         width: Dimensions.get('window').width - Dimensions.get('window').width * 0.15,
