@@ -6,10 +6,13 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom:5
+        paddingBottom: 5,
+        width: "100%",
+        backgroundColor: "rgba(255,255,255,0.2)"
     },
     containerCategories: {
-        flex: 0.5
+        flex: 0.85,
+        justifyContent: "center"
     },
     containerTitle: {
         flex: 0.5,
@@ -20,24 +23,23 @@ export default StyleSheet.create({
         justifyContent: "center"
     },
     containerTextTitle: {
-        flex: 0.2,
-        justifyContent: "center"
+        flex: 0.15,
+        justifyContent: "center",
+        
     },
     imageTitle: {
-        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.42,
+        width: "100%",
         height: "100%"
     },
     textTitle: {
-        textAlign: "center",
         fontSize: Dimensions.get('window').width * 0.1,
         color: Constants.colors.colorPrimary
     },
-    containerTextCategories: {
-        flex: 0.2
-    },
     containerListCategories: {
-        flex: 0.8,
-        paddingBottom:20
+        flex: 1,
+        alignItems: "center",
+        paddingVertical: 10,
+        justifyContent: "center"
     },
     categoriesTitle: {
         textAlign: "center",
@@ -47,21 +49,15 @@ export default StyleSheet.create({
     containerButton: {
         flex: 1,
         margin: 3,
-        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.42,
-        backgroundColor: Constants.colors.colorPrimary,
-        borderRadius: 10
-    },
+        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.7,
+        backgroundColor: "rgba(62, 39, 35, 0.8)",
+        borderRadius: 10,
+        height: Dimensions.get('window').height - Dimensions.get('window').height * 0.83,
 
-    containerButtonPress: {
-        flex: 1,
-        margin: 3,
-        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.42,
-        backgroundColor: "red",
-        borderRadius: 10
     },
     textButton: {
         textAlign: "center",
-        fontSize:  Dimensions.get('window').width - Dimensions.get('window').width * 0.95,
+        fontSize: Dimensions.get('window').width - Dimensions.get('window').width * 0.95,
         marginVertical: 10,
         color: "white"
 

@@ -8,18 +8,22 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "rgba(0,0,0,0.8)",
     },
-    containerContent:{
+    containerContent: {
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginVertical:Dimensions.get('window').height - Dimensions.get('window').height * 0.95,
+        marginVertical: Dimensions.get('window').height - Dimensions.get('window').height * 0.95,
         width: Dimensions.get('window').width - Dimensions.get('window').width * 0.15,
-        backgroundColor:"#e2e2e2",
+        backgroundColor: "#e2e2e2",
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 5
+    },
+    containerButtonModal: {
+        justifyContent: "center",
+        marginBottom: "0.5%"
     },
     containerButton: {
         margin: 3,
@@ -34,37 +38,29 @@ export default StyleSheet.create({
         color: "white"
 
     },
-    containerThumb:{
-        flex:0.5,
+    containerTextViews: {
+        backgroundColor: "#F5F5F7",
+        height: Dimensions.get('window').height - Dimensions.get('window').height * 0.71,
+        width: "80%",
+        padding: 5,
     },
-    containerTextViews:{
-        flex:0.44,
-        backgroundColor:"red"
+    containerTitle: {
+
     },
-    containerIngredients:{
-      
+    titleText: {
+        fontSize: Dimensions.get('window').height - Dimensions.get('window').height * 0.97,
+        fontWeight: "bold"
     },
-    containerTitle:{
-        
+    containerInstructions: {
+        margin: 2
     },
-    containerGlass:{
-       
+    textInstructions: {
+        fontSize: Dimensions.get('window').height - Dimensions.get('window').height * 0.98,
     },
-    containerCategorie:{
-        
-    },
-    containerAlcoholic:{
-       
-    },
-    
-    containerButtonModal:{
-        flex:0.3,
-        justifyContent:"center",
-    },
-    imageThumb:{ 
-        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.15, 
+    imageThumb: {
+        width: Dimensions.get('window').width - Dimensions.get('window').width * 0.15,
         height: Dimensions.get('window').height - Dimensions.get('window').height * 0.5,
-     }
+    }
 
 
 });

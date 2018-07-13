@@ -1,5 +1,5 @@
-import React, { Component} from 'react';
-import { Text, StatusBar,Platform, ActivityIndicator, View, FlatList, Image } from 'react-native';
+import React, { Component } from 'react';
+import { Text, StatusBar, Platform, ImageBackground, ActivityIndicator, View, FlatList, Image } from 'react-native';
 import styles from './Categories.style';
 import { Button } from 'react-native-elements';
 
@@ -36,7 +36,7 @@ export default class Categories extends Component {
 
 
     onPressCategories = (categorie) => {
-        this.props.navigation.navigate("Drinks", {...categorie})
+        this.props.navigation.navigate("Drinks", { ...categorie })
     }
 
     render() {
@@ -53,36 +53,33 @@ export default class Categories extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
-                <View style={styles.containerTitle}>
+                <ImageBackground source={{ uri: 'https://www.thecocktaildb.com/images/ingredients/ice.png' }}
+                    style={styles.imageTitle} >
+                                <View style={styles.container}>
+
                     <View style={styles.containerTextTitle}>
-                        <Text style={styles.textTitle}>iDrink</Text>
-                    </View>
-                    <View style={styles.containerImageTitle}>
-                        <Image source={{ uri: 'https://www.thecocktaildb.com/images/ingredients/ice.png' }}
-                            style={styles.imageTitle} />
+                        <Text style={styles.textTitle}>iDrink's Categories</Text>
                     </View>
 
-                </View>
+                    <View style={styles.containerCategories}>
+                        <View style={styles.containerListCategories}>
+                            <FlatList
+                                data={this.state.dataSource}
+                                numColumns={3}
+                                renderItem={({ item }) =>
+                                    <Button
+                                        buttonStyle={styles.containerButton}
+                                        onPress={() => this.onPressCategories(item)}
+                                        titleStyle={styles.textButton}
+                                        title={item.strCategory}
+                                    />
+                                }
+                            />
+                        </View>
+                        </View>
+                        </View>
+                </ImageBackground>
 
-
-                <View style={styles.containerCategories}>
-                    <View style={styles.containerTextCategories}>
-                        <Text style={styles.categoriesTitle}>Categories</Text>
-                    </View>
-                    <View style={styles.containerListCategories}>
-                        <FlatList
-                            data={this.state.dataSource}
-                            renderItem={({ item }) =>
-                                <Button
-                                    buttonStyle={styles.containerButton}
-                                    onPress={() => this.onPressCategories(item)}
-                                    titleStyle={styles.textButton}
-                                    title={item.strCategory}
-                                />
-                            }
-                        />
-                    </View>
-                </View>
             </View>
         );
     }
