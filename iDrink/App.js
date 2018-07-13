@@ -1,40 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import { AppRegistry, Platform } from 'react-native';
-import { StackNavigator } from "react-navigation";
-import Categories from './src/pages/categories/Categories';
-import Constants from './src/constants/Constants';
-import Drinks from './src/pages/drinks/Drinks';
+import React, { Component } from 'react';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar
+} from 'react-native';
+import Route from 'iDrink/src/components/route/Route';
 
 
-const PagesStack = StackNavigator({
+export default class App extends Component {
 
-  Categories: {
-    screen: Categories,
-    navigationOptions: ({ navigation }) => ({
-      title: "",
-      headerTintColor: (Platform.OS === 'ios' ? Constants.colors.colorPrimary : "white"),
-      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary },
-    })
-  },
+  componentDidMount() {
+   
+  }
 
-  Drinks: {
-    screen: Drinks,
-    navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.strCategory}`,
-      headerTintColor: (Platform.OS === 'ios' ? Constants.colors.colorPrimary : "white"),
-      headerStyle: { backgroundColor: Platform.OS === 'ios' ? undefined : Constants.colors.colorPrimary },
-    })
-  },
-
-});
-const Root = PagesStack;
-
-export default Root;
-AppRegistry.registerComponent('Categories', () => Categories);
+  render() {
+    return (
+      <Route/>
+    );
+  }
+}

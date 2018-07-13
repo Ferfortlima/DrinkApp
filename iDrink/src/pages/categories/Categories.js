@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StatusBar, Platform, ImageBackground, ActivityIndicator, View, FlatList, Image } from 'react-native';
+import { Text, Alert, StatusBar, Platform, ImageBackground, ActivityIndicator, View, FlatList } from 'react-native';
 import styles from './Categories.style';
 import { Button } from 'react-native-elements';
 
@@ -30,7 +30,17 @@ export default class Categories extends Component {
 
             })
             .catch((error) => {
-                console.error(error);
+                Alert.alert(
+                    "ERROR, an unexpected error occurred!",
+                    "Please, try again later.",
+                    [
+                        {
+                            text: "Close",
+                            style: "cancel"
+                        }
+                    ],
+                    { cancelable: false }
+                );
             });
     }
 

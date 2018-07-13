@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StatusBar, TouchableNativeFeedback, TouchableOpacity, ImageBackground, Platform, ActivityIndicator, View, FlatList } from 'react-native';
+import { Text, StatusBar, Alert, TouchableOpacity, ImageBackground, Platform, ActivityIndicator, View, FlatList } from 'react-native';
 import styles from './Drinks.style';
 import DrinkDetails from 'iDrink/src/components/drinkDetails/DrinkDetails';
 import ModalLoading from 'iDrink/src/components/modalLoading/ModalLoading';
@@ -46,7 +46,17 @@ export default class Drinks extends Component {
 
                     })
                     .catch((error) => {
-                        console.error(error);
+                        Alert.alert(
+                            "ERROR, an unexpected error occurred!",
+                            "Please, try again later.",
+                            [
+                                {
+                                    text: "Close",
+                                    style: "cancel"
+                                }
+                            ],
+                            { cancelable: false }
+                        );
                     });
             }, 3000);
         });
@@ -75,7 +85,17 @@ export default class Drinks extends Component {
 
             })
             .catch((error) => {
-                console.error(error);
+                Alert.alert(
+                    "ERROR, an unexpected error occurred!",
+                    "Please, try again later.",
+                    [
+                        {
+                            text: "Close",
+                            style: "cancel"
+                        }
+                    ],
+                    { cancelable: false }
+                );
             });
     }
 
